@@ -33,7 +33,7 @@
     preact "10.11.3"
     preact-render-to-string "5.2.3"
 
-"@auth/prisma-adapter@^2.5.0":
+"@auth/prisma-adapter@^2.5.1":
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/@auth/prisma-adapter/-/prisma-adapter-2.5.1.tgz#9c0f313fe0e543d8d28fbe37e478ef390880f159"
   integrity sha512-dZtfcuaCp51sxz7gWpjD7VWL/koLm0CEd1viJtFfBUV/5xoWlcPCrCaUJ/T5jbLRyqBlS1IGr7+cZvyXsdnKjA==
