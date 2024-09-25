@@ -1,5 +1,5 @@
-import { CardWrapper } from "@/components/auth/CardWrapper";
-import { LoginForm } from "@/components/auth/LoginForm";
+import { CardWrapper } from "@/components/auth/card-wrapper";
+import { LoginForm } from "@/components/auth/login-form";
 
 const LoginPage = () => {
 	return (
