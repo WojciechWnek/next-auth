@@ -1,11 +1,32 @@
-import authConfig from "./auth.config";
 import NextAuth from "next-auth";
+
+import authConfig from "./auth.config";
+import { publicRoutes, authRoutes, apiRoutePrefix, DEFAULT_LOGIN_REDIRECT } from "./routes";
 
 const { auth } = NextAuth(authConfig);
 
-export default auth(async function middleware(req) {
+export default auth((req) => {
+	const { nextUrl } = req;
 	const isLoggedIn = !!req.auth;
-	// Your custom middleware logic goes here
+
+	const isApiAuthRoute = nextUrl.pathname.startsWith(apiRoutePrefix);
+	const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+	const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+
+	if (isApiAuthRoute) {
+		return null;
+	}
+
+	if (isAuthRoute) {
+		if (isLoggedIn) return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+		return null;
+	}
+
+	if (!isLoggedIn && !isPublicRoute) {
+		return Response.redirect(new URL("/auth/login", nextUrl));
+	}
+
+	return null;
 });
 
 // Optionally, don't invoke Middleware on some paths
