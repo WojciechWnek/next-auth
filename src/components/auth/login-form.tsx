@@ -23,7 +23,6 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { login } from "@/actions/login";
 
-
 export const LoginForm = () => {
 	const searchParams = useSearchParams();
 	const callbackUrl = searchParams.get("callbackUrl");
@@ -48,17 +47,12 @@ export const LoginForm = () => {
 	const onSubmit = (values: z.infer<typeof LoginSchema>) => {
 		setError("");
 		setSuccess("");
-    
-    
+
 		startTransition(() => {
-      login(values)
-      .then((data) => {
-        
-        setError(data.error)
-
-        setSuccess(data.success)
-      });
-
+			login(values).then((data) => {
+				if (data?.error) setError(data.error);
+				// if (data?.success) setSuccess(data.success);
+			});
 		});
 	};
 
