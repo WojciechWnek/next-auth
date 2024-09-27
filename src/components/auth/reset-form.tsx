@@ -19,7 +19,7 @@ import { CardWrapper } from "@/components/auth/card-wrapper";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
-// import { reset } from "@/actions/reset";
+import { reset } from "@/actions/reset";
 
 export const ResetForm = () => {
 	const [error, setError] = useState<string | undefined>("");
@@ -38,10 +38,10 @@ export const ResetForm = () => {
 		setSuccess("");
 
 		startTransition(() => {
-			// reset(values).then((data) => {
-			// 	setError(data?.error);
-			// 	setSuccess(data?.success);
-			// });
+			reset(values).then((data) => {
+				setError(data?.error);
+				setSuccess(data?.success);
+			});
 		});
 	};
 
